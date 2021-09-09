@@ -1,6 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import FictionCatalog from './DTO/FictionCatalog';
 import FictionSearchListItem from './DTO/FictionSearchListItem';
-import { getSearchInfoList } from './spider';
+import {
+  getSearchInfoList,
+  getFictionCatalog,
+  getFictionContent,
+} from './spider';
 
 @Injectable()
 export class AppService {
@@ -8,6 +13,18 @@ export class AppService {
     fictionName: string,
   ): Promise<FictionSearchListItem[]> {
     const res = await getSearchInfoList(fictionName);
+
+    return res;
+  }
+
+  async getFictionCatalogByUrl(url: string): Promise<FictionCatalog[]> {
+    const res = await getFictionCatalog(url);
+
+    return res;
+  }
+
+  async getFictionContentByUrl(url: string): Promise<string> {
+    const res = await getFictionContent(url);
 
     return res;
   }

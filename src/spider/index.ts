@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import FictionCatalog from 'src/DTO/FictionCatalog';
 import FictionSearchListItem from 'src/DTO/FictionSearchListItem';
 const getSearchUrl = (bookName: string) =>
   encodeURI(
@@ -38,4 +39,26 @@ const getSearchInfoList = async (bookName: string) => {
   return hotContent;
 };
 
-export { getSearchInfoList };
+const getFictionCatalog = async (link: string) => {
+  const { data } = await axios.get(link);
+  const $ = cheerio.load(data);
+  const hotContent = $('.box_con #list dl dd a')
+    .toArray()
+    .map((v) => {
+      const name = cheerio(v).text().trim();
+      const link = cheerio(v).attr('href');
+      return new FictionCatalog(name, `https://www.biquwx.la/10_10233/${link}`);
+    });
+
+  return hotContent;
+};
+
+const getFictionContent = async (link: string) => {
+  const { data } = await axios.get(link);
+  const $ = cheerio.load(data);
+  const hotContent = $('#content').toString();
+
+  return hotContent;
+};
+
+export { getSearchInfoList, getFictionCatalog, getFictionContent };
