@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-import FictionCatalog from 'src/DTO/FictionCatalog';
-import FictionSearchListItem from 'src/DTO/FictionSearchListItem';
+import FictionCatalog from '../DTO/fiction/FictionCatalog';
+import FictionSearchListItem from '../DTO/fiction/FictionSearchListItem';
 const getSearchUrl = (bookName: string) =>
   encodeURI(
     `https://www.biquwx.la/modules/article/search.php?searchkey=${bookName}`,

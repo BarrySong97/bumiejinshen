@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import FictionCatalog from '../DTO/FictionCatalog';
-import FictionSearchListItem from '../DTO/FictionSearchListItem';
+import FictionCatalog from '../DTO/fiction/FictionCatalog';
+import FictionSearchListItem from '../DTO/fiction/FictionSearchListItem';
 import {
   getSearchInfoList,
   getFictionCatalog,
