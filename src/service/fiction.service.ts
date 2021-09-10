@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import FictionCatalog from './DTO/FictionCatalog';
-import FictionSearchListItem from './DTO/FictionSearchListItem';
+import FictionCatalog from '../DTO/FictionCatalog';
+import FictionSearchListItem from '../DTO/FictionSearchListItem';
 import {
   getSearchInfoList,
   getFictionCatalog,
   getFictionContent,
-} from './spider';
+} from '../spider/fiction';
 
 @Injectable()
-export class AppService {
+export class FictionService {
   async searchFictionByName(
     fictionName: string,
   ): Promise<FictionSearchListItem[]> {

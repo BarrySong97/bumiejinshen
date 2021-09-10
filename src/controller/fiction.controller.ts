@@ -1,17 +1,17 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { AppService } from './app.service';
+import { FictionService } from './service/fiction.service';
 import FictionCatalog from './DTO/FictionCatalog';
 import FictionSearchListItem from './DTO/FictionSearchListItem';
 
 @Controller('/fiction')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class FictionController {
+  constructor(private readonly fictionService: FictionService) {}
 
   @Get()
   async searchFiction(
     @Query('fictionName') fictionName: string,
   ): Promise<FictionSearchListItem[]> {
-    const content = this.appService.searchFictionByName(fictionName);
+    const content = this.fictionService.searchFictionByName(fictionName);
     return content;
   }
 
@@ -19,13 +19,13 @@ export class AppController {
   async getCatalog(
     @Query('fictionCatalogLink') url: string,
   ): Promise<FictionCatalog[]> {
-    const content = this.appService.getFictionCatalogByUrl(url);
+    const content = this.fictionService.getFictionCatalogByUrl(url);
     return content;
   }
 
   @Get('/content')
   async getFictioContent(@Query('contentLink') url: string): Promise<string> {
-    const content = this.appService.getFictionContentByUrl(url);
+    const content = this.fictionService.getFictionContentByUrl(url);
     return content;
   }
 }
