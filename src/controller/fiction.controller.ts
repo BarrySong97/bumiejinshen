@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { FictionService } from './service/fiction.service';
-import FictionCatalog from './DTO/FictionCatalog';
-import FictionSearchListItem from './DTO/FictionSearchListItem';
+import { FictionService } from '../service/fiction.service';
+import FictionCatalog from '../DTO/fiction/FictionCatalog';
+import FictionSearchListItem from '../DTO/fiction/FictionSearchListItem';
 
 @Controller('/fiction')
 export class FictionController {
