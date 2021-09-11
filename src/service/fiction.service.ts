@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import FictionContetn from 'src/DTO/comic/FictionContent';
 import FictionCatalog from '../DTO/fiction/FictionCatalog';
 import FictionSearchListItem from '../DTO/fiction/FictionSearchListItem';
 import {
@@ -23,7 +24,7 @@ export class FictionService {
     return res;
   }
 
-  async getFictionContentByUrl(url: string): Promise<string> {
+  async getFictionContentByUrl(url: string): Promise<FictionContetn> {
     const res = await getFictionContent(url);
 
     return res;

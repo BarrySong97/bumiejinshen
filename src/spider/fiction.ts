@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import FictionContetn from 'src/DTO/comic/FictionContent';
 import FictionCatalog from '../DTO/fiction/FictionCatalog';
 import FictionSearchListItem from '../DTO/fiction/FictionSearchListItem';
 const getSearchUrl = (bookName: string) =>
@@ -57,8 +58,10 @@ const getFictionContent = async (link: string) => {
   const { data } = await axios.get(link);
   const $ = cheerio.load(data);
   const hotContent = $('#content').toString();
-
-  return hotContent;
+  const linkInfo = $('.bottem1 a').toArray();
+  const pre = cheerio(linkInfo[1]).attr('href');
+  const next = cheerio(linkInfo[3]).attr('href');
+  return new FictionContetn(next, pre, hotContent);
 };
 
 export { getSearchInfoList, getFictionCatalog, getFictionContent };

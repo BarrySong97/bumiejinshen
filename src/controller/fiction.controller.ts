@@ -2,6 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { FictionService } from '../service/fiction.service';
 import FictionCatalog from '../DTO/fiction/FictionCatalog';
 import FictionSearchListItem from '../DTO/fiction/FictionSearchListItem';
+import FictionContetn from 'src/DTO/comic/FictionContent';
 
 @Controller('/fiction')
 export class FictionController {
@@ -24,7 +25,9 @@ export class FictionController {
   }
 
   @Get('/content')
-  async getFictioContent(@Query('contentLink') url: string): Promise<string> {
+  async getFictioContent(
+    @Query('contentLink') url: string,
+  ): Promise<FictionContetn> {
     const content = this.fictionService.getFictionContentByUrl(url);
     return content;
   }
